@@ -13,7 +13,7 @@ variables:
   dockerRegistryServiceConnection: '9acf31d2-d53f-4312-b139-a8f6c48302f5'
   imageRepository: 'foxglovestudio'
   containerRegistry: 'avopscontainerreg.azurecr.io'
-  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
 
   # Agent VM image name
@@ -29,11 +29,12 @@ stages:
       vmImage: $(vmImageName)
     steps:
     - task: Docker@2
-      displayName: Build and push an image to container registry
       inputs:
-        command: buildAndPush
-        repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
-        containerRegistry: $(dockerRegistryServiceConnection)
-        tags: |
-          $(tag)
+        containerRegistry: 'avopscontainerreg.azurecr.io'
+        command: 'build'
+        Dockerfile: '**/Dockerfile'
+
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'avopscontainerreg.azurecr.io'
+        command: 'push'
