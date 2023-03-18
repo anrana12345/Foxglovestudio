@@ -30,11 +30,11 @@ stages:
     steps:
     - task: Docker@2
       inputs:
-        containerRegistry: 'avopscontainerreg.azurecr.io'
+        containerRegistry: containerRegistry
         command: 'build'
         Dockerfile: '**/Dockerfile'
 
     - task: Docker@2
       inputs:
-        containerRegistry: 'avopscontainerreg.azurecr.io'
+        containerRegistry: containerRegistry
         command: 'push'
