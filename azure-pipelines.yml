@@ -13,7 +13,7 @@ variables:
   dockerRegistryServiceConnection: '05c25e67-f442-4047-9435-44b4b70d04bc'
   imageRepository: 'foxglovestudio'
   containerRegistry: 'avopscontainerreg.azurecr.io'
-  dockerfilePath: '$(Build.SourcesDirectory)/Foxglovestudio/Dockerfile'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
 
   # Agent VM image name
